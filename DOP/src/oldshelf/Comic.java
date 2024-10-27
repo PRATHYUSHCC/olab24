@@ -2,19 +2,26 @@ package oldshelf;
 
 public class Comic extends Book {
 
-	/* TODO: Add most strict modifiers here*/ String Title;
+	private String title;
 
 	// TODO: Warning to be removed.
 	private final int ageOfMainCharacter;
 
 	// TODO Correct the error
-	public Comic() {
+	public Comic(String title,int ageOfMainCharacter) {
+		this.title=title;
+		this.ageOfMainCharacter=ageOfMainCharacter;
 	}
-	
+
+	public String getter(){
+		return this.title;
+	}
 	// TODO : create a getter if required.
 	
 	// TODO: Create a setter if required
-
+	public void setter(String title){
+		this.title=title;
+	}
 	// TODO: write a toString method
 	@Override
 	public String toString() {
