@@ -1,10 +1,19 @@
 package oldshelf;
 
 public abstract class Book {
+    
+    private String title;
 
-	public Book() {
-		public String title;
-	public Book(String title) {
-		this.title=title;
-	}// TODO: Finish Code here if anything to be done?
-	}
+    public Book(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+}
