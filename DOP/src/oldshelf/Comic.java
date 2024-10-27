@@ -2,41 +2,44 @@ package oldshelf;
 
 public class Comic extends Book {
 
-	private String title;
+    private final String title;
+    
+    private final int ageOfMainCharacter;
 
-	// TODO: Warning to be removed.
-	private final int ageOfMainCharacter;
+    public Comic(String title, int ageOfMainCharacter) {
+        super(title);
+        this.title = title;
+        this.ageOfMainCharacter = ageOfMainCharacter;
+    }
 
-	// TODO Correct the error
-	public Comic(String title,int ageOfMainCharacter) {
-		this.title=title;
-		this.ageOfMainCharacter=ageOfMainCharacter;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getter(){
-		return this.title;
-	}
-	// TODO : create a getter if required.
-	
-	// TODO: Create a setter if required
-	public void setter(String title){
-		this.title=title;
-	}
-	// TODO: write a toString method
-	@Override
-	public String toString() {
-		return null;
-	}
+    public int getAgeOfMainCharacter() {
+        return ageOfMainCharacter;
+    }
 
-	// TODO: Bonus: 
-	@Override
-	public int hashCode() {
-		// TODO: Fill up an arbitrary hash method that takes into account only the age of main characted and the Strign title
-	}
-	
-	// TODO: Bonus: 
-	@Override
-	public boolean equals(Object o) {
-		// TODO: Based on the information about hashCode write the equals method.
-	}
+    @Override
+    public String toString() {
+        return "Comic{title='" + title + "', ageOfMainCharacter=" + ageOfMainCharacter + "}";
+    }
+
+    @Override
+    public int hashCode() {
+        int result = title != null ? title.hashCode() : 0;
+        result = ageOfMainCharacter +41 * result  ;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Comic comic = (Comic) o;
+
+        if (ageOfMainCharacter != comic.ageOfMainCharacter) return false;
+        return title != null ? title.equals(comic.title) : comic.title == null;
+    }
 }
