@@ -1,15 +1,17 @@
 
-// TODO: Complete this with record components
 public record TextBook(String title, String author, int publicationYear, String isbn) {
+    
+    
     @Override
     public String toString() {
-        return String.format("Title='%s', author='%s', year=%d, ISBN='%s'",title, author, publicationYear, isbn);
+        return String.format("TextBook[Title='%s', Author='%s', Year=%d, ISBN='%s']",
+                title, author, publicationYear, isbn);
     }
 
-    public String gettit() {
+    public String getTitle() {
         return title;
     }
-    public String getAuth() {
+    public String getAuthor() {
         return author;
     }
     public int getYear() {
@@ -18,5 +20,4 @@ public record TextBook(String title, String author, int publicationYear, String 
     public String getISBN() {
         return isbn;
     }
-
 }
