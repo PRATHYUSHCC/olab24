@@ -1,6 +1,6 @@
 package newshelf2;
 
-public final class Fiction implements IBook<Genre> {
+public final class Fiction implements IBook<Genre>, Comparable<Fiction> {
     private final String name;
     private final Genre genre;
 
@@ -11,7 +11,7 @@ public final class Fiction implements IBook<Genre> {
 
     @Override
     public Genre getTitle() {
-        return genre; // This might not be a good choice for title comparison, adjust as necessary.
+        return genre;
     }
 
     public String getName() {
@@ -19,8 +19,7 @@ public final class Fiction implements IBook<Genre> {
     }
 
     @Override
-    public int compareTo(IBook<Genre> other) {
-        return this.getName().compareTo(((Fiction) other).getName()); // Compare based on name
+    public int compareTo(Fiction other) {
+        return this.name.compareTo(other.name); // Comparing by name
     }
 }
-
