@@ -1,6 +1,6 @@
 package newshelf2;
 
-public final class Comic implements IBook<String> {
+public final class Comic implements IBook<String>, Comparable<Comic> {
     private final String title;
     private final int issueNumber;
 
@@ -14,13 +14,12 @@ public final class Comic implements IBook<String> {
         return title;
     }
 
-    @Override
-    public int compareTo(IBook<String> other) {
-        return this.getTitle().compareTo(other.getTitle());
-    }
-
     public int getIssueNumber() {
         return issueNumber;
     }
-}
 
+    @Override
+    public int compareTo(Comic other) {
+        return this.title.compareTo(other.title); // Comparing by title
+    }
+}
