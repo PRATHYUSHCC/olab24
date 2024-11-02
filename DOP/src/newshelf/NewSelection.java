@@ -1,7 +1,5 @@
 package newshelf;
 
-// Assuming you are using Java 17 or higher for Record patterns
-// Define classes or records
 record TextBook(String subject) {}
 record Fiction(String name) {}
 record Comic(String title, int issueNumber) {}
@@ -17,7 +15,7 @@ class RareBook implements IBook {
     }
 }
 
-// Updated NewSelection class
+
 public class NewSelection {
 
     public static String getAgeOrTitle(Object o) {
