@@ -11,15 +11,16 @@ public final class Fiction implements IBook<Genre> {
 
     @Override
     public Genre getTitle() {
-        return genre;
+        return genre; // This might not be a good choice for title comparison, adjust as necessary.
     }
 
     public String getName() {
         return name;
     }
+
+    @Override
+    public int compareTo(IBook<Genre> other) {
+        return this.getName().compareTo(((Fiction) other).getName()); // Compare based on name
+    }
 }
 
-// You’ll need an enum for Genre
-enum Genre {
-    COMEDY, DRAMA, SCIENCE_FICTION, FANTASY
-}
