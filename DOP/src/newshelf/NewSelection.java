@@ -2,18 +2,14 @@ package newshelf;
 
 public class NewSelection {
 
-  
     public static String getAgeOrTitle(Object o) {
-        if (o instanceof IBook book) {
-            if (book instanceof TextBook textBook) {
-                return textBook.subject();
-            } else if (book instanceof Fiction fiction) {
-                return fiction.name();
-            } else if (book instanceof Comic comic) {
-                return comic.title();
-            }
-        }
-        return "";
+        return switch (o) {
+            case TextBook textBook -> textBook.subject();
+            case Fiction fiction -> fiction.name();
+            case Comic comic -> comic.title();
+            case IBook book when book.isRare() -> "Rare Book";
+            default -> "";
+        };
     }
 
     public static void main(String[] args) {
