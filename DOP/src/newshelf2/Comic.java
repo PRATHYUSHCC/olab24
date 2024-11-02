@@ -14,7 +14,13 @@ public final class Comic implements IBook<String> {
         return title;
     }
 
+    @Override
+    public int compareTo(IBook<String> other) {
+        return this.getTitle().compareTo(other.getTitle());
+    }
+
     public int getIssueNumber() {
         return issueNumber;
     }
 }
+
