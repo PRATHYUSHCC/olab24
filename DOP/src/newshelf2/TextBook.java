@@ -1,6 +1,6 @@
 package newshelf2;
 
-public final class TextBook implements IBook<String> {
+public final class TextBook implements IBook<String>, Comparable<TextBook> {
     private final String subject;
 
     public TextBook(String subject) {
@@ -11,4 +11,10 @@ public final class TextBook implements IBook<String> {
     public String getTitle() {
         return subject;
     }
+
+    @Override
+    public int compareTo(TextBook other) {
+        return this.subject.compareTo(other.subject);
+    }
 }
+
