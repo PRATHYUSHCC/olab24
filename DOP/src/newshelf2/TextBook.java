@@ -1,20 +1,18 @@
 package newshelf2;
 
-public final class TextBook implements IBook<String>, Comparable<TextBook> {
-    private final String subject;
-
-    public TextBook(String subject) {
-        this.subject = subject;
-    }
-
+public record TextBook<T extends Comparable<T>>(T subject) implements IBook<T> {
     @Override
-    public String getTitle() {
+    public T getInfo() {
         return subject;
     }
 
     @Override
-    public int compareTo(TextBook other) {
-        return this.subject.compareTo(other.subject);
+    public int compareTo(IBook<T> other) {
+        if (other instanceof TextBook<T> otherTextBook) {
+            return subject.compareTo(otherTextBook.subject);
+        }
+        return -1; // Can return -1 if types are different, or handle as desired
     }
 }
+
 
