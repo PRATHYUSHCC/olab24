@@ -3,17 +3,9 @@ package newshelf;
 record TextBook(String subject) {}
 record Fiction(String name) {}
 record Comic(String title, int issueNumber) {}
-interface IBook {
-    boolean isRare();
-}
+interface IBook {}
 
-// Implement a class for IBook
-class RareBook implements IBook {
-    @Override
-    public boolean isRare() {
-        return true; // Example logic for rarity
-    }
-}
+
 
 
 public class NewSelection {
@@ -22,8 +14,7 @@ public class NewSelection {
         return switch (o) {
             case TextBook(String subject) -> subject; // Record pattern
             case Fiction(String name) -> name;         // Record pattern
-            case Comic(String title, int issueNumber) -> title; // Record pattern
-            case IBook book when book.isRare() -> "Rare Book";
+            case Comic(String title, int issueNumber) when issueNumber>=20-> title; // Record pattern
             default -> "Unknown Type";
         };
     }
@@ -32,12 +23,13 @@ public class NewSelection {
         TextBook textBook = new TextBook("Social Studies");
         Fiction fiction = new Fiction("Anthropologies");
         Comic comic = new Comic("He-Man", 15);
-        RareBook rareBook = new RareBook(); // Example of a rare book
+        Comic comic1=new Comic("adventures", 26);
 
         System.out.println("TextBook is " + getAgeOrTitle(textBook)); 
         System.out.println("Fiction book is " + getAgeOrTitle(fiction));    
-        System.out.println("Comic book is " + getAgeOrTitle(comic));       
-        System.out.println("Rare book is " + getAgeOrTitle(rareBook));       
+        System.out.println("Comic book is " + getAgeOrTitle(comic));
+        System.out.println("Comic book is " + getAgeOrTitle(comic1));        
+          
     }
 }
 
