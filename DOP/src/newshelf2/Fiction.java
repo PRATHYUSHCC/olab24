@@ -1,25 +1,16 @@
 package newshelf2;
 
-public final class Fiction implements IBook<Genre>, Comparable<Fiction> {
-    private final String name;
-    private final Genre genre;
-
-    public Fiction(String name, Genre genre) {
-        this.name = name;
-        this.genre = genre;
+public record Fiction<T extends Comparable<T>>(T title) implements IBook<T> {
+    @Override
+    public T getInfo() {
+        return title;
     }
 
     @Override
-    public Genre getTitle() {
-        return genre;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public int compareTo(Fiction other) {
-        return this.name.compareTo(other.name); // Comparing by name
+    public int compareTo(IBook<T> other) {
+        if (other instanceof Fiction<T> otherFiction) {
+            return title.compareTo(otherFiction.title);
+        }
+        return -1;
     }
 }
