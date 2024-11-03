@@ -1,44 +1,27 @@
 package newshelf2;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class NewSelection {
-
-    public static <T> T getAgeOrTitle(IBook<T> book) {
-        return book.getTitle();
+    public static String getAgeOrTitle(IBook<?> book) {
+        return switch (book) {
+            case TextBook<?> textBook -> textBook.getInfo().toString();
+            case Fiction<?> fiction -> fiction.getInfo().toString();
+            case Comic<?> comic -> comic.getInfo().toString();
+            default -> "Unknown Type";
+        };
     }
 
     public static void main(String[] args) {
-        TextBook textBook = new TextBook("Social Studies");
-        Fiction fiction = new Fiction("Anthropologies", Genre.COMEDY);
-        Comic comic = new Comic("He-Man", 15);
-        
-        // Display titles
-        System.out.println("TextBook title is " + getAgeOrTitle(textBook)); 
-        System.out.println("Fiction genre is " + getAgeOrTitle(fiction));    
-        System.out.println("Comic title is " + getAgeOrTitle(comic));       
+        TextBook<String> textBook1 = new TextBook<>("Mathematics");
+        TextBook<String> textBook2 = new TextBook<>("Science");
+        Fiction<String> fiction1 = new Fiction<>("Harry Potter");
+        Fiction<String> fiction2 = new Fiction<>("Lord of the Rings");
+        Comic<String> comic1 = new Comic<>("Marvel: Issue 15");
+        Comic<String> comic2 = new Comic<>("DC: Issue 10");
 
-        // Create a list of IBook
-        List<IBook<?>> books = new ArrayList<>();
-        books.add(textBook);
-        books.add(fiction);
-        books.add(comic);
-
-        // Sort the books based on their respective compareTo methods
-        Collections.sort(books, (b1, b2) -> {
-            if (b1 instanceof Comparable && b2 instanceof Comparable) {
-                return ((Comparable) b1).compareTo(b2);
-            }
-            return 0; // Handle case where objects aren't comparable
-        });
-
-        // Display sorted titles
-        System.out.println("Books sorted by title:");
-        for (IBook<?> book : books) {
-            System.out.println(book.getTitle());
-        }
+        System.out.println("Comparing textbooks: " + textBook1.compareTo(textBook2));
+        System.out.println("Comparing fiction books: " + fiction1.compareTo(fiction2));
+        System.out.println("Comparing comics: " + comic1.compareTo(comic2));
     }
 }
 
