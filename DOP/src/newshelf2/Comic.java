@@ -1,25 +1,16 @@
 package newshelf2;
 
-public final class Comic implements IBook<String>, Comparable<Comic> {
-    private final String title;
-    private final int issueNumber;
-
-    public Comic(String title, int issueNumber) {
-        this.title = title;
-        this.issueNumber = issueNumber;
+public record Comic<T extends Comparable<T>>(T info) implements IBook<T> {
+    @Override
+    public T getInfo() {
+        return info;
     }
 
     @Override
-    public String getTitle() {
-        return title;
-    }
-
-    public int getIssueNumber() {
-        return issueNumber;
-    }
-
-    @Override
-    public int compareTo(Comic other) {
-        return this.title.compareTo(other.title); // Comparing by title
+    public int compareTo(IBook<T> other) {
+        if (other instanceof Comic<T> otherComic) {
+            return info.compareTo(otherComic.info);
+        }
+        return -1;
     }
 }
